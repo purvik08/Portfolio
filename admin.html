@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard: Axyntra</title>
+  <style>
+    :root {
+      --navy: #0d2240; --navy-mid: #163560; --cyan: #00c2e0; --orange: #f77f00;
+      --off-white: #f0f4f8; --text-body: #3d5170; --text-dark: #0d1f35;
+    }
+    * { box-sizing:border-box; }
+    body { font-family:'DM Sans', sans-serif; margin:0; color:var(--text-dark); background:var(--off-white); }
+    a { color:var(--cyan); text-decoration:none; }
+
+    nav {
+      position:sticky; top:0; left:0; right:0; z-index:1000;
+      background:rgba(13,34,64,0.95); backdrop-filter:blur(12px);
+      display:flex; align-items:center; justify-content:space-between; gap:12px;
+      padding:8px 4vw; color:white;
+    }
+    .nav-brand { display:flex; align-items:center; gap:8px; text-decoration:none; }
+    .brand-mark { width:34px; height:34px; background:linear-gradient(135deg,var(--cyan),var(--navy-soft)); border-radius:14px; display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; color:white; font-weight:800; }
+    .brand-name { font-family:'Syne',sans-serif; font-weight:800; font-size:16px; }
+    .nav-links { display:flex; gap:14px; list-style:none; margin:0; padding:0; }
+    .nav-links a { color:rgba(255,255,255,.9); font-size:13px; text-transform:uppercase; font-weight:600; cursor: pointer; }
+    .nav-pill { cursor: pointer; color:white; border:1px solid rgba(255,255,255,.2); padding:8px 14px; border-radius:999px; }
+
+    .panel { max-width:1100px; margin:24px auto 48px; padding:24px; background:white; border-radius:18px; box-shadow:0 14px 46px rgba(13,34,64,.12); }
+    h1 { font-family:'Syne',sans-serif; margin-bottom:16px; }
+    h2 { font-family:'Syne',sans-serif; margin:18px 0 10px; }
+    
+    .tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 2px solid var(--off-white); padding-bottom: 10px; }
+    .tab { padding: 8px 16px; cursor: pointer; font-weight: 600; border-radius: 6px; }
+    .tab.active { background: var(--cyan); color: white; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .form-row { display:grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px; }
+    .form-row.full { grid-template-columns: 1fr; }
+    input, textarea { width: 100%; padding: 10px; border-radius: 10px; border: 1px solid rgba(13,34,64,.18); font-family: inherit; }
+    button { padding: 10px 16px; border: none; background: var(--cyan); color: white; border-radius: 8px; cursor: pointer; font-weight: 600; }
+    button.del { background: #e63946; }
+    button:disabled { opacity: 0.6; cursor: not-allowed; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; font-size: 14px; }
+    th, td { border: 1px solid rgba(13,34,64,.15); padding: 10px; text-align: left; }
+    th { background: rgba(0,194,224,.13); }
+    td .actions { display: flex; gap: 8px; }
+
+    footer { padding: 14px 4vw 20px; background: var(--navy); color: white; text-align:center; }
+    
+    /* Login Overlay */
+    #loginOverlay {
+      position: fixed; inset: 0; background: var(--navy); z-index: 9999;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .login-box { background: white; padding: 40px; border-radius: 16px; text-align: center; width: 100%; max-width: 400px; }
+    .login-box h2 { color: var(--navy); margin-bottom: 20px; }
+    .login-box input { margin-bottom: 15px; }
+    .login-box button { width: 100%; }
+
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+<div id="loginOverlay" class="hidden">
+  <div class="login-box">
+    <h2>Admin Login</h2>
+    <input type="password" id="loginPassword" placeholder="Enter Admin Password" />
+    <button id="loginBtn">Login</button>
+    <p id="loginError" style="color: red; font-size: 13px; margin-top: 10px;"></p>
+  </div>
+</div>
+
+<nav id="navbar">
+  <a href="/" class="nav-brand"><div class="brand-mark">AX</div><div class="brand-name">AXYNTRA ADMIN</div></a>
+  <div class="nav-links">
+    <a href="/">Live Site</a>
+  </div>
+  <button id="logoutBtn" class="nav-pill" style="background:transparent;">LOGOUT</button>
+</nav>
+
+<div class="panel hidden" id="mainPanel">
+  <h1>Dashboard</h1>
+  
+  <div class="tabs">
+    <div class="tab active" data-target="tab-projects">Projects</div>
+    <div class="tab" data-target="tab-hero">Hero Section</div>
+    <div class="tab" data-target="tab-why">Why Us</div>
+    <div class="tab" data-target="tab-learn">Learning Path</div>
+    <div class="tab" style="background:#0d2240;color:white;margin-left:auto;" data-target="tab-inquiries">Inbox</div>
+  </div>
+
+  <!-- PROJECTS TAB -->
+  <div class="tab-content active" id="tab-projects">
+    <h2>Add New Project</h2>
+    <div class="form-row"><input id="projName" placeholder="Name" /><input id="projTag" placeholder="Tag (e.g. New/Flagship)" /></div>
+    <div class="form-row"><input id="projPrice" placeholder="Price" /><input id="projTagClass" placeholder="Tag class (tag-n/tag-f)" /></div>
+    <div class="form-row full"><textarea id="projDesc" placeholder="Description" rows="2"></textarea></div>
+    <button id="addProjBtn">Create Project</button>
+
+    <h2>Existing Projects</h2>
+    <table>
+      <thead><tr><th>ID</th><th>Name</th><th>Tag</th><th>Price</th><th>Actions</th></tr></thead>
+      <tbody id="projectsTable"></tbody>
+    </table>
+  </div>
+
+  <!-- HERO TAB -->
+  <div class="tab-content" id="tab-hero">
+    <h2>Edit Hero Section</h2>
+    <div class="form-row full"><input id="heroKicker" placeholder="Kicker Text" /></div>
+    <div class="form-row full"><textarea id="heroTitle" placeholder="Title (use \n for line break)" rows="2"></textarea></div>
+    <div class="form-row full"><textarea id="heroSubtitle" placeholder="Subtitle" rows="2"></textarea></div>
+    <button id="saveHeroBtn">Save Hero Data</button>
+  </div>
+
+  <!-- WHY US TAB -->
+  <div class="tab-content" id="tab-why">
+    <h2>Add 'Why Us' Item</h2>
+    <div class="form-row"><input id="whyIcon" placeholder="Emoji / Icon" /><input id="whyTitle" placeholder="Title" /></div>
+    <div class="form-row full"><textarea id="whyDesc" placeholder="Description" rows="2"></textarea></div>
+    <button id="addWhyBtn">Add Item</button>
+
+    <h2>Existing Items</h2>
+    <table>
+      <thead><tr><th>ID</th><th>Icon</th><th>Title</th><th>Description</th><th>Actions</th></tr></thead>
+      <tbody id="whyTable"></tbody>
+    </table>
+  </div>
+
+  <!-- LEARN TAB -->
+  <div class="tab-content" id="tab-learn">
+    <h2>Add Learning Step</h2>
+    <div class="form-row full"><input id="learnTitle" placeholder="Step Title" /></div>
+    <div class="form-row full"><textarea id="learnDesc" placeholder="Description" rows="2"></textarea></div>
+    <button id="addLearnBtn">Add Step</button>
+
+    <h2>Existing Steps</h2>
+    <table>
+      <thead><tr><th>ID</th><th>Title</th><th>Description</th><th>Actions</th></tr></thead>
+      <tbody id="learnTable"></tbody>
+    </table>
+  </div>
+  </div>
+
+  <!-- INBOX TAB -->
+  <div class="tab-content" id="tab-inquiries">
+    <h2>Customer Inquiries</h2>
+    <table>
+      <thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Role</th><th>Interest</th><th>Message</th><th>Actions</th></tr></thead>
+      <tbody id="inqTable"></tbody>
+    </table>
+  </div>
+</div>
+
+<footer><p>© 2026 Axyntra Robotics</p></footer>
+
+<script>
+  // Auth logic
+  const checkAuth = async () => {
+    try {
+      const res = await fetch('/api/check-auth');
+      const data = await res.json();
+      if (data.authenticated) {
+        document.getElementById('loginOverlay').classList.add('hidden');
+        document.getElementById('mainPanel').classList.remove('hidden');
+        loadAllData();
+      } else {
+        document.getElementById('loginOverlay').classList.remove('hidden');
+        document.getElementById('mainPanel').classList.add('hidden');
+      }
+    } catch {
+      document.getElementById('loginOverlay').classList.remove('hidden');
+    }
+  };
+
+  document.getElementById('loginBtn').addEventListener('click', async () => {
+    const pw = document.getElementById('loginPassword').value;
+    const res = await fetch('/api/login', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ password: pw })
+    });
+    if (res.ok) {
+      document.getElementById('loginPassword').value = '';
+      document.getElementById('loginError').innerText = '';
+      checkAuth();
+    } else {
+      document.getElementById('loginError').innerText = 'Invalid password';
+    }
+  });
+
+  document.getElementById('logoutBtn').addEventListener('click', async () => {
+    await fetch('/api/logout', { method: 'POST' });
+    checkAuth();
+  });
+
+  // Tab switching
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+      tab.classList.add('active');
+      document.getElementById(tab.dataset.target).classList.add('active');
+    });
+  });
+
+  // Data Loading
+  async function loadAllData() {
+    fetchSiteData();
+    fetchProjects();
+    fetchInquiries();
+  }
+
+  async function fetchSiteData() {
+    const res = await fetch('/api/site');
+    const { hero, why, learn } = await res.json();
+    
+    // Populate Hero
+    if (hero) {
+      document.getElementById('heroKicker').value = hero.kicker || '';
+      document.getElementById('heroTitle').value = hero.title || '';
+      document.getElementById('heroSubtitle').value = hero.subtitle || '';
+    }
+
+    // Populate Why
+    const wBody = document.getElementById('whyTable');
+    wBody.innerHTML = '';
+    (why || []).forEach(w => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${w.id}</td><td>${w.icon}</td><td>${w.title}</td><td>${w.description}</td><td><button class="del" onclick="delWhy(${w.id})">Del</button></td>`;
+      wBody.appendChild(tr);
+    });
+
+    // Populate Learn
+    const lBody = document.getElementById('learnTable');
+    lBody.innerHTML = '';
+    (learn || []).forEach(l => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${l.id}</td><td>${l.title}</td><td>${l.description}</td><td><button class="del" onclick="delLearn(${l.id})">Del</button></td>`;
+      lBody.appendChild(tr);
+    });
+  }
+
+  async function fetchProjects() {
+    const res = await fetch('/api/projects');
+    const projects = await res.json();
+    const pBody = document.getElementById('projectsTable');
+    pBody.innerHTML = '';
+    projects.forEach(p => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${p.id}</td><td>${p.name}</td><td>${p.tag}</td><td>${p.price}</td><td><button class="del" onclick="delProject(${p.id})">Del</button></td>`;
+      pBody.appendChild(tr);
+    });
+  }
+
+  async function fetchInquiries() {
+    const res = await fetch('/api/inquiries');
+    if (!res.ok) return;
+    const inqs = await res.json();
+    const iBody = document.getElementById('inqTable');
+    iBody.innerHTML = '';
+    inqs.forEach(i => {
+      const tr = document.createElement('tr');
+      const d = new Date(i.date).toLocaleDateString();
+      tr.innerHTML = `<td>${d}</td><td>${i.firstName} ${i.lastName}</td><td><a href="mailto:${i.email}">${i.email}</a></td><td>${i.role}</td><td>${i.interest}</td><td style="max-width:300px;overflow:hidden;text-overflow:ellipsis" title="${i.message}">${i.message}</td><td><button class="del" onclick="delInquiry(${i.id})">Resolve</button></td>`;
+      iBody.appendChild(tr);
+    });
+  }
+
+  // Deletions
+  window.delProject = async (id) => { await fetch('/api/projects/'+id, { method:'DELETE' }); fetchProjects(); }
+  window.delWhy = async (id) => { await fetch('/api/site/why/'+id, { method:'DELETE' }); fetchSiteData(); }
+  window.delLearn = async (id) => { await fetch('/api/site/learn/'+id, { method:'DELETE' }); fetchSiteData(); }
+  window.delInquiry = async (id) => { if (confirm('Mark as resolved/deleted?')) { await fetch('/api/inquiries/'+id, { method:'DELETE' }); fetchInquiries(); } }
+
+  // Additions
+  document.getElementById('addProjBtn').addEventListener('click', async () => {
+    const payload = {
+      name: document.getElementById('projName').value,
+      tag: document.getElementById('projTag').value,
+      tagClass: document.getElementById('projTagClass').value,
+      price: document.getElementById('projPrice').value,
+      description: document.getElementById('projDesc').value
+    };
+    if(!payload.name || !payload.description) return alert('Name & description req');
+    await fetch('/api/projects', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    document.querySelectorAll('#tab-projects input, #tab-projects textarea').forEach(el => el.value = '');
+    fetchProjects();
+  });
+
+  document.getElementById('saveHeroBtn').addEventListener('click', async () => {
+    const payload = {
+      kicker: document.getElementById('heroKicker').value,
+      title: document.getElementById('heroTitle').value,
+      subtitle: document.getElementById('heroSubtitle').value
+    };
+    await fetch('/api/site/hero', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    alert('Hero saved!');
+  });
+
+  document.getElementById('addWhyBtn').addEventListener('click', async () => {
+    const payload = {
+      icon: document.getElementById('whyIcon').value,
+      title: document.getElementById('whyTitle').value,
+      description: document.getElementById('whyDesc').value
+    };
+    if(!payload.title) return alert('Title req');
+    await fetch('/api/site/why', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    document.querySelectorAll('#tab-why input, #tab-why textarea').forEach(el => el.value = '');
+    fetchSiteData();
+  });
+
+  document.getElementById('addLearnBtn').addEventListener('click', async () => {
+    const payload = {
+      title: document.getElementById('learnTitle').value,
+      description: document.getElementById('learnDesc').value
+    };
+    if(!payload.title) return alert('Title req');
+    await fetch('/api/site/learn', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) });
+    document.querySelectorAll('#tab-learn input, #tab-learn textarea').forEach(el => el.value = '');
+    fetchSiteData();
+  });
+
+  // Init
+  checkAuth();
+</script>
+</body>
+</html>

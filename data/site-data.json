@@ -1,0 +1,51 @@
+{
+  "hero": {
+    "kicker": "Modern robotics education",
+    "title": "Build the Future with Your Hands",
+    "subtitle": "Axyntra Robots are made for students, makers and first-time engineers."
+  },
+  "why": [
+    {"id":1,"icon":"🚀","title":"Hands-On Learning","description":"Every kit includes guides, circuit diagrams, and code walkthroughs."},
+    {"id":2,"icon":"💡","title":"Affordable for Students","description":"Professional-grade hardware with student-friendly pricing and discounts."},
+    {"id":3,"icon":"🔧","title":"Fully Customizable","description":"Open hardware and firmware for independent development."}
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "tag": "Flagship",
+      "tagClass": "tag-f",
+      "name": "ESP32 Drone",
+      "description": "A fully programmable quadcopter built for makers and robotics enthusiasts.",
+      "specs": [
+        {"key":"MCU","value":"ESP32 Dual-Core"},
+        {"key":"Connectivity","value":"Wi-Fi + Bluetooth"},
+        {"key":"Flight Time","value":"15-20 min"},
+        {"key":"Control","value":"App / RC / Auto"},
+        {"key":"Camera","value":"Optional Module"},
+        {"key":"Kit Type","value":"DIY + Pre-built"}
+      ],
+      "price":"₹ 9,999"
+    },
+    {
+      "id": 2,
+      "tag": "New",
+      "tagClass": "tag-n",
+      "name": "Smart DIY Phone",
+      "description": "A modular open-source smartphone kit for learning hardware and software.",
+      "specs": [
+        {"key":"Architecture","value":"Modular / Open"},
+        {"key":"Display","value":"IPS Touch Screen"},
+        {"key":"Connectivity","value":"Wi-Fi, BT, GSM opt."},
+        {"key":"OS","value":"Custom / Linux"},
+        {"key":"Battery","value":"Li-Po Rechargeable"},
+        {"key":"Kit Type","value":"Full DIY Kit"}
+      ],
+      "price":"₹ 6,499"
+    }
+  ],
+  "learn": [
+    {"id":1,"title":"Choose Your Kit","description":"Pick the kit that fits your skill level and project goals."},
+    {"id":2,"title":"Assemble the Hardware","description":"Follow precise build guides to wire and assemble your device."},
+    {"id":3,"title":"Flash & Program","description":"Upload firmware, run demos, and customize behavior with code."}
+  ]
+}
