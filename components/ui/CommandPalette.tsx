@@ -28,7 +28,6 @@ export default function CommandPalette({ open, onClose }: CommandPaletteProps) {
     { id: 'projects', label: 'Go to Projects', icon: <Code className="w-4 h-4" />, category: 'Navigation', action: () => { scrollTo('#projects'); onClose(); } },
     { id: 'skills', label: 'Go to Skills', icon: <Terminal className="w-4 h-4" />, category: 'Navigation', action: () => { scrollTo('#skills'); onClose(); } },
     { id: 'experience', label: 'Go to Experience', icon: <Briefcase className="w-4 h-4" />, category: 'Navigation', action: () => { scrollTo('#experience'); onClose(); } },
-    { id: 'research', label: 'Go to Research', icon: <BookOpen className="w-4 h-4" />, category: 'Navigation', action: () => { scrollTo('#research'); onClose(); } },
     { id: 'contact', label: 'Go to Contact', icon: <Mail className="w-4 h-4" />, category: 'Navigation', action: () => { scrollTo('#contact'); onClose(); } },
     { id: 'resume', label: 'Download Resume', icon: <FileText className="w-4 h-4" />, category: 'Actions', action: () => { window.open(PERSONAL_INFO.resumePath, '_blank'); onClose(); } },
     { id: 'github', label: 'Open GitHub', icon: <Github className="w-4 h-4" />, category: 'Links', action: () => { window.open(PERSONAL_INFO.socials.github, '_blank'); onClose(); } },

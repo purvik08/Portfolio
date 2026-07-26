@@ -4,7 +4,6 @@ import Hero from '@/components/sections/Hero';
 import Projects from '@/components/sections/Projects';
 import TechStack from '@/components/sections/TechStack';
 import Experience from '@/components/sections/Experience';
-import Research from '@/components/sections/Research';
 import BlogSection from '@/components/sections/BlogSection';
 import Contact from '@/components/sections/Contact';
 import Footer from '@/components/sections/Footer';
@@ -28,7 +27,6 @@ export default function HomePage() {
       <Projects />
       <TechStack />
       <Experience />
-      <Research />
       <BlogSection />
       <Contact />
       <Footer />
