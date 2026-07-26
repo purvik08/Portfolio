@@ -1,1 +1,6 @@
-{"/_not-found/page":"/_not-found","/api/contact/route":"/api/contact","/api/github/route":"/api/github","/page":"/"}
+{
+  "/_not-found/page": "/_not-found",
+  "/api/contact/route": "/api/contact",
+  "/api/github/route": "/api/github",
+  "/page": "/"
+}

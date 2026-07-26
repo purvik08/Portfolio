@@ -1,5 +1,7 @@
 # Dependencies
 node_modules/
+.next/
+build/
 
 # Secrets — never commit these
 .env

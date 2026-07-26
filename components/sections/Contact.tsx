@@ -78,10 +78,10 @@ export default function Contact() {
             <ChevronRight className="w-3 h-3" /> Get in Touch
           </div>
           <h2 className="font-heading text-4xl md:text-5xl font-extrabold text-white mb-4">
-            Let's <span className="gradient-text">Connect</span>
+            Let&apos;s <span className="gradient-text">Connect</span>
           </h2>
           <p className="max-w-lg mx-auto text-gray-500">
-            Open to collaborations, hardware projects, internships, and technical discussions. Let's build something great together.
+            Open to collaborations, hardware projects, internships, and technical discussions. Let&apos;s build something great together.
           </p>
         </motion.div>
 
@@ -214,7 +214,7 @@ export default function Contact() {
                 {status === 'success' && (
                   <div className="flex items-center gap-2 text-sm text-green-400 px-4 py-3 rounded-xl bg-green-500/10 border border-green-500/20">
                     <CheckCircle className="w-4 h-4 shrink-0" />
-                    Message sent successfully! I'll get back to you soon.
+                    Message sent successfully! I&apos;ll get back to you soon.
                   </div>
                 )}
                 {status === 'error' && (

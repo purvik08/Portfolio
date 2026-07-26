@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, Terminal, Code, User, Briefcase, BookOpen, Mail, FileText, Github, Linkedin } from 'lucide-react';
+import { Search, Terminal, Code, User, Briefcase, Mail, FileText, Github, Linkedin } from 'lucide-react';
 import { PERSONAL_INFO } from '@/data/portfolioData';
 
 interface CommandItem {
@@ -51,8 +51,10 @@ export default function CommandPalette({ open, onClose }: CommandPaletteProps) {
 
   useEffect(() => {
     if (open) {
-      setTimeout(() => inputRef.current?.focus(), 50);
-      setQuery('');
+      setTimeout(() => {
+        inputRef.current?.focus();
+        setQuery('');
+      }, 50);
     }
   }, [open]);
 

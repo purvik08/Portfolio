@@ -33,8 +33,10 @@ export default function Hero() {
           setCharIndex(c => c - 1);
         }, 35);
       } else {
-        setDeleting(false);
-        setTitleIndex(i => (i + 1) % TYPING_STRINGS.length);
+        timeoutRef.current = setTimeout(() => {
+          setDeleting(false);
+          setTitleIndex(i => (i + 1) % TYPING_STRINGS.length);
+        }, 35);
       }
     }
     return () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); };
