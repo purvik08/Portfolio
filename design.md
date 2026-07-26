@@ -1,30 +1,31 @@
-# Design Guidelines
+# Design Guidelines — Purvik Prajapati Portfolio
 
-## Colour & Theme
-- Primary: #1A73E8 (deep blue)
-- Secondary: #FFC107 (amber)
-- Accent: #34A853 (green)
-- Dark mode background: #121212, light text: #E0E0E0
-- Use subtle gradients and glassmorphism for cards.
+## Colour & Theme (Minimalist Luxury Charcoal & Gold)
+- Background: `#0c0c0e` (Rich deep charcoal black)
+- Subtle Background: `#121215`
+- Card Background: `rgba(255, 255, 255, 0.03)` (Glassmorphism dark card)
+- Gold Accent (Primary): `#f59e0b` (Amber Gold)
+- Gold Dark: `#d97706`
+- Gold Light: `#fbbf24`
+- Gold Glow: `rgba(245, 158, 11, 0.2)`
+- Text Primary: `#f3f4f6`
+- Text Muted: `#9ca3af`
 
-## Font & Typography
-- Primary font: **Inter** (Google Fonts) – weights 400, 500, 700.
-- Heading hierarchy:
-  - H1: 48px, weight 700, line‑height 1.2
-  - H2: 36px, weight 600
-  - H3: 28px, weight 500
-- Body text: 18px, weight 400, line‑height 1.6.
-- Use lowercase for UI elements, uppercase for navigation.
+## Typography
+- Primary Font: **Inter** (Google Fonts) for body text and navigation.
+- Heading Font: **Syne** (Google Fonts) for titles and section headings.
+- Hierarchy:
+  - Hero H1: clamp(48px, 6.5vw, 84px), weight 800, line-height 0.95
+  - Section H2: clamp(32px, 4vw, 52px), weight 800, line-height 1.05
+  - Cards / Modal H3: 18px - 24px, weight 700/800
 
 ## Visual Style
-- Rounded corners (8‑12px), subtle drop shadows.
-- Micro‑animations on hover (scale 1.05, color transition 200ms).
-- Buttons: filled primary with white text, secondary outlined.
-- Icons: outline style, 24px, primary colour.
+- Glassmorphism dark cards with subtle gold borders (`rgba(245, 158, 11, 0.25)`).
+- Micro-animations on hover (card translates Y -4px, glowing gold shadow).
+- Interactive 'Hire Me' Modal with dark blur backdrop (`rgba(0,0,0,0.8)`).
+- Custom smooth cursor dot + glowing ring effect.
 
 ## Accessibility
-- Contrast ratio ≥ 4.5:1 for text.
-- Focus indicators visible (2px solid accent).
-- Keyboard navigation fully supported.
-
-*These guidelines provide a premium, modern look for the Axyntra website.*
+- High contrast ratio for text on dark background.
+- Visible outline indicators on interactive elements.
+- Accessible ARIA roles and labels for navigation and modals.

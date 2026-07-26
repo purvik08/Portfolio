@@ -1,18 +1,18 @@
-# Project Requirements Document (PRD)
+# Project Requirements Document (PRD) — Purvik Prajapati Portfolio
 
 ## What to Build
-- A modern web application for **Axyntra** that showcases the company, its projects, and provides a contact/inquiry form.
-- Admin dashboard for managing site content (hero, projects, why‑us, learning sections) with SQLite persistence.
-- Backend API for CRUD operations and inquiry handling.
+- A personal portfolio web application for **Purvik Prajapati**, Robotics & Embedded Systems Engineer.
+- Interactive showcase of skills, real projects (GitHub & LinkedIn), educational credentials, and direct PDF resume download.
+- Contact form connected to Express/SQLite API (`/api/inquiries`) with mailto fallback.
 
-## Targeted Users
-- **Prospective clients** visiting the site to learn about services.
-- **Axyntra staff** who need to update content without coding.
-- **Developers** extending the platform.
+## Targeted Audience
+- **Recruiters & Engineering Managers** looking for robotics, hardware, embedded systems, or AI/ML talent.
+- **Collaborators & Open Source Community** interested in hardware and automation projects.
 
 ## Core Features
-- Responsive UI with vibrant dark‑mode design.
-- Dynamic content loading from SQLite.
-- Secure admin authentication.
-- Inquiry capture with email notifications.
-- SEO‑friendly meta tags and semantic HTML.
+- Responsive Minimalist Luxury Charcoal & Gold theme.
+- Fixed top navigation bar with active section scroll spy, Resume download button, Hire Me interactive modal, and mobile menu toggle.
+- Featured Projects grid with direct links to GitHub repositories and LinkedIn posts.
+- Skill progress bars and technology stack tags.
+- Dual-mode contact form handling (API submission + mailto fallback).
+- SEO-optimized meta tags, OpenGraph data, and semantic HTML structure.

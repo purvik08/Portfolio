@@ -1,26 +1,22 @@
-# Axyntra Website with Editable Backend
+# Purvik Prajapati — Portfolio Website
 
-## Install
+Personal portfolio website for **Purvik Prajapati**, Robotics & Embedded Systems Engineer.
 
-1. `cd c:\Users\MacBook\Desktop\Axyntra\Website`
-2. `npm install`
-3. `npm run start`
-4. Open `http://localhost:3000` for frontend
-5. Open `http://localhost:3000/admin.html` for project management
+## Tech Stack
+- **Frontend**: Vanilla HTML5, CSS3 (Minimalist Luxury Charcoal & Gold theme), ES6+ JavaScript
+- **Backend**: Node.js & Express (`server.js`)
+- **Database**: SQLite (`database.js`) for inquiry and project persistence
 
-## Backend endpoints
+## Quick Start
 
-- GET `/api/site` - full site data
-- GET `/api/projects` - product project list
-- POST `/api/projects` - add new project
-- PUT `/api/projects/:id` - update project
-- DELETE `/api/projects/:id` - delete project
+1. `npm install`
+2. `npm start`
+3. Open `http://localhost:3000` in your browser.
 
-## Data store
-
-- `data/site-data.json` contains all content persisted on disk.
-
-## Notes
-
-- Frontend product cards are rendered from API and reflect edits instantly.
-- Use `admin.html` to add, delete projects without code deploy.
+## Features
+- **Hero & About**: Highlighting background in robotics, ESP32, and AI/ML.
+- **Skills**: Interactive skill progress bars & technology stack tags.
+- **Projects**: Direct links to real GitHub and LinkedIn projects.
+- **Education**: B.Tech CSE (AI/ML) & Diploma in Automation & Robotics.
+- **Contact Form & Modal**: Functional message submission to `/api/inquiries` + mailto fallback.
+- **Resume**: Direct PDF download link (`Resume/Purvik-Resume-2.1.pdf`).

@@ -1,25 +1,16 @@
-# Project Phases
+# Project Phases — Purvik Prajapati Portfolio
 
-## Phase 1 – Foundations
-- Set up repository, folder structure, and basic build scripts.
-- Implement static landing page with responsive design.
-- Add SQLite database and simple Node/Express server.
+## Phase 1 – Foundations & Setup
+- Set up workspace repository and file structure (`index.html`, `portfolio.css`, `portfolio.js`).
+- Integrated Express backend (`server.js`) and SQLite database (`database.js`).
 
-## Phase 2 – Content Management
-- Build admin dashboard (login, CRUD for hero, projects, why‑us, learning sections).
-- Connect dashboard to SQLite via API endpoints.
-- Implement inquiry form handling and email notifications.
+## Phase 2 – Design & Content Customization
+- Applied **Minimalist Luxury Charcoal & Gold** theme with Google Fonts (**Syne** + **Inter**).
+- Populated real project showcase from GitHub (`purvik08`) and LinkedIn (`purvik-prajapati`).
+- Added educational credentials (B.Tech CSE AI/ML & Diploma Automation & Robotics).
+- Integrated official PDF resume download (`Resume/Purvik-Resume-2.1.pdf`).
 
-## Phase 3 – Polish & Deploy
-- Apply design system (colours, typography, glassmorphism, animations).
-- Thorough SEO optimisation, meta tags, Open Graph data.
-- Add error handling, validation, security hardening.
-- Deploy to a cloud provider (Render, Railway, etc.) and perform final testing.
-
-## Phase 4 – Future Enhancements (optional)
-- Add search functionality, analytics integration, CI/CD pipeline.
-- Migrate to a more robust DB if needed (PostgreSQL).
-- Implement multi‑language support.
-
----
-*Generated on 2026‑07‑19*
+## Phase 3 – Navigation & Interactive Polish
+- Configured fixed top navigation bar with active section scroll spy, Resume button, Hire Me interactive modal, and mobile hamburger toggle.
+- Connected contact form to `/api/inquiries` with mailto fallback mechanism.
+- Optimized responsive layouts and accessibility contrast ratios.

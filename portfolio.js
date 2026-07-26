@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    portfolio.js  —  Purvik Prajapati Personal Portfolio
    ============================================================ */
 
@@ -138,18 +138,45 @@ window.addEventListener('load', () => {
   const btn  = document.getElementById('sendMessageBtn');
   if (!form || !btn) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const original = btn.textContent;
-    btn.textContent = '✓ Message Sent!';
-    btn.style.background = '#22c55e';
+    const originalText = btn.textContent;
+    const name    = document.getElementById('contactName')?.value || '';
+    const email   = document.getElementById('contactEmail')?.value || '';
+    const message = document.getElementById('contactMessage')?.value || '';
+
+    btn.textContent = 'Sending...';
     btn.disabled = true;
 
+    try {
+      // 1. Try sending to backend API
+      const res = await fetch('/api/inquiries', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ firstName: name, email: email, message: message })
+      });
+
+      if (res.ok) {
+        btn.textContent = '✓ Message Sent!';
+        btn.style.background = '#22c55e';
+        form.reset();
+      } else {
+        throw new Error('API unavailable');
+      }
+    } catch (err) {
+      // 2. Fallback: Launch mailto email client
+      const mailtoUrl = `mailto:sumritprajapati@gmail.com?subject=${encodeURIComponent('Inquiry from ' + name)}&body=${encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message)}`;
+      window.location.href = mailtoUrl;
+
+      btn.textContent = '✓ Opening Mail App...';
+      btn.style.background = '#22c55e';
+      form.reset();
+    }
+
     setTimeout(() => {
-      btn.textContent = original;
+      btn.textContent = originalText;
       btn.style.background = '';
       btn.disabled = false;
-      form.reset();
     }, 3000);
   });
 })();
