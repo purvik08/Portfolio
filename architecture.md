@@ -1,35 +1,116 @@
-# Architecture Document — Purvik Prajapati Portfolio
+# Architecture — Purvik Prajapati Portfolio v2.0
 
-## Application Flow
-- **Client (Browser)** → Static portfolio assets (`index.html`, `portfolio.css`, `portfolio.js`, `Resume/Purvik-Resume-2.1.pdf`).
-- **Server (Node.js/Express)** → Serves static portfolio files and handles `/api/inquiries` POST route.
-- **Database (SQLite)** → Stores received inquiry messages in `data/database.sqlite`.
+## Framework
 
-## Architecture Overview
-- **Presentation Layer** – Semantic HTML5, CSS3 (Charcoal & Gold luxury theme), Vanilla ES6+ JavaScript.
-- **Backend Layer** – Express.js server (`server.js`) providing CORS, JSON parsing, static serving, and inquiry persistence.
-- **Data Layer** – SQLite database accessed via `database.js` (`sqlite` and `sqlite3` driver).
+**Next.js 15** (App Router) with **React 19** and **TypeScript**
 
-## Folder & File Structure
+---
+
+## Directory Architecture
+
 ```
-c:\Users\MacBook\Desktop\Axyntra\Website\
-│   index.html              # Main portfolio landing page
-│   portfolio.html          # Portfolio HTML template
-│   portfolio.css           # Portfolio design system & luxury styling
-│   portfolio.js            # Active scroll spy, mobile menu, modal & form logic
-│   server.js               # Node.js Express server entry point
-│   database.js             # SQLite database initialization & helper methods
-│   package.json            # Dependencies & scripts
+Website/
+├── app/                          # Next.js App Router
+│   ├── globals.css               # Global styles & design tokens
+│   ├── layout.tsx                # Root layout (fonts, metadata, providers)
+│   ├── page.tsx                  # Home page — section assembly
+│   └── api/
+│       ├── contact/route.ts      # POST — contact form handler
+│       └── github/route.ts       # GET — GitHub profile/repos proxy
 │
-├───Resume/
-│       Purvik-Resume-2.1.pdf # Official PDF Resume
+├── components/
+│   ├── canvas/
+│   │   └── ParticleBg.tsx        # HTML5 Canvas particle network
+│   ├── layout/
+│   │   ├── CustomCursor.tsx      # Animated dot+ring cursor
+│   │   └── LenisProvider.tsx     # Lenis smooth scroll context
+│   ├── ui/
+│   │   ├── Badge.tsx             # Badge pill (gold/cyan/outline/dark)
+│   │   ├── GlassCard.tsx         # Glassmorphic card wrapper
+│   │   └── CommandPalette.tsx    # Ctrl+K overlay palette
+│   └── sections/
+│       ├── Navbar.tsx            # Sticky navbar + mobile menu
+│       ├── Hero.tsx              # Landing hero section
+│       ├── Projects.tsx          # Filterable project showcase
+│       ├── TechStack.tsx         # Skills + marquee
+│       ├── Experience.tsx        # Timeline education
+│       ├── BlogSection.tsx       # Blog post cards
+│       ├── Contact.tsx           # Contact form + info
+│       └── Footer.tsx            # Footer + back-to-top
 │
-└───data/
-        database.sqlite     # Persistent SQLite database store
+├── data/
+│   └── portfolioData.ts          # Typed data: projects, skills, experience, blog
+│
+├── lib/
+│   └── utils.ts                  # cn() utility (clsx + tailwind-merge)
+│
+├── Resume/
+│   └── Purvik-Resume-2.1.pdf     # Resume file (served as static asset)
+│
+├── tailwind.config.ts            # Custom color tokens + animations
+├── tsconfig.json                 # TypeScript config with @/* alias
+├── next.config.mjs               # Next.js 15 build config
+└── postcss.config.js             # PostCSS + Tailwind
 ```
 
-## Tech Stack
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Backend**: Node.js, Express.js
-- **Database**: SQLite
-- **Fonts**: Google Fonts (Syne, Inter)
+---
+
+## Data Flow
+
+```
+portfolioData.ts
+    │
+    ├──► Hero.tsx          (PERSONAL_INFO: subtitles, socials, resumePath)
+    ├──► Projects.tsx      (PROJECTS[]: category, metrics, hardware, tags)
+    ├──► TechStack.tsx     (SKILL_CATEGORIES[]: skills with level %)
+    ├──► Experience.tsx    (EXPERIENCES[]: period, title, highlights)
+    ├──► BlogSection.tsx   (BLOG_POSTS[]: slug, title, date, category)
+    ├──► Contact.tsx       (PERSONAL_INFO: email, phone, socials)
+    ├──► Navbar.tsx        (PERSONAL_INFO: resumePath)
+    ├──► Footer.tsx        (PERSONAL_INFO: socials, email)
+    └──► CommandPalette.tsx(PERSONAL_INFO: resumePath, socials)
+```
+
+---
+
+## API Routes
+
+| Route | Method | Description |
+|---|---|---|
+| `/api/contact` | POST | Receives form data, logs, returns 200. Mailto fallback in client. |
+| `/api/github` | GET | Fetches `purvik08` profile + repos from GitHub API. 1hr ISR cache. |
+
+---
+
+## Rendering Strategy
+
+| Page | Strategy |
+|---|---|
+| `/` (home) | **CSR** — client components for animations/interactivity |
+| `/api/github` | **ISR** — `next: { revalidate: 3600 }` |
+| `/api/contact` | **Dynamic** — no cache |
+
+---
+
+## Key Libraries
+
+| Library | Version | Purpose |
+|---|---|---|
+| `next` | 15.0.3 | Framework |
+| `react` | 19.0.0-rc | UI runtime |
+| `framer-motion` | 11.x | Scroll + enter animations |
+| `@studio-freight/lenis` | 1.0.42 | Smooth scrolling |
+| `lucide-react` | 0.454 | Icons |
+| `tailwindcss` | 3.4 | Utility CSS |
+| `clsx` + `tailwind-merge` | latest | Class merging |
+| `typescript` | 5.6 | Type safety |
+
+---
+
+## Path Aliases
+
+```json
+{ "@/*": ["./*"] }
+```
+
+All imports use `@/` prefix (e.g. `@/components/ui/GlassCard`).

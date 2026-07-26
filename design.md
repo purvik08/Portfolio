@@ -1,31 +1,116 @@
-# Design Guidelines — Purvik Prajapati Portfolio
+# Design System — Purvik Prajapati Portfolio v2.0
 
-## Colour & Theme (Minimalist Luxury Charcoal & Gold)
-- Background: `#0c0c0e` (Rich deep charcoal black)
-- Subtle Background: `#121215`
-- Card Background: `rgba(255, 255, 255, 0.03)` (Glassmorphism dark card)
-- Gold Accent (Primary): `#f59e0b` (Amber Gold)
-- Gold Dark: `#d97706`
-- Gold Light: `#fbbf24`
-- Gold Glow: `rgba(245, 158, 11, 0.2)`
-- Text Primary: `#f3f4f6`
-- Text Muted: `#9ca3af`
+## Theme: Minimalist Luxury — Charcoal & Gold
+
+---
+
+## Color Palette
+
+| Token | Value | Usage |
+|---|---|---|
+| `charcoal-950` | `#0a0a0c` | Page background |
+| `charcoal-900` | `#0f0f13` | Card surface |
+| `charcoal-800` | `#16161e` | Elevated card / code bg |
+| `charcoal-700` | `#20202c` | Skill bar track |
+| `charcoal-600` | `#2d2d3d` | Borders |
+| `gold-500` | `#f59e0b` | Primary accent |
+| `gold-400` | `#fbbf24` | Hover / highlight |
+| `gold-600` | `#d97706` | Pressed state |
+| `cyan-500` | `#06b6d4` | Secondary accent |
+| `cyan-400` | `#38bdf8` | Skill bars (mid-level) |
+
+---
 
 ## Typography
-- Primary Font: **Inter** (Google Fonts) for body text and navigation.
-- Heading Font: **Syne** (Google Fonts) for titles and section headings.
-- Hierarchy:
-  - Hero H1: clamp(48px, 6.5vw, 84px), weight 800, line-height 0.95
-  - Section H2: clamp(32px, 4vw, 52px), weight 800, line-height 1.05
-  - Cards / Modal H3: 18px - 24px, weight 700/800
 
-## Visual Style
-- Glassmorphism dark cards with subtle gold borders (`rgba(245, 158, 11, 0.25)`).
-- Micro-animations on hover (card translates Y -4px, glowing gold shadow).
-- Interactive 'Hire Me' Modal with dark blur backdrop (`rgba(0,0,0,0.8)`).
-- Custom smooth cursor dot + glowing ring effect.
+| Role | Font | Weight |
+|---|---|---|
+| Headings / Titles | **Syne** | 400–800 |
+| Body / UI | **Inter** | 300–700 |
+| Code / Architecture | **JetBrains Mono** | 400 |
 
-## Accessibility
-- High contrast ratio for text on dark background.
-- Visible outline indicators on interactive elements.
-- Accessible ARIA roles and labels for navigation and modals.
+CSS variables: `--font-inter`, `--font-syne`
+
+---
+
+## Glassmorphism Classes
+
+| Class | Effect |
+|---|---|
+| `.glass` | `bg rgba(15,15,19,0.6)` + `backdrop-blur-xl` + border `rgba(255,255,255,0.08)` |
+| `.glass-gold` | Gold-tinted glass — for status cards |
+| `.glow-gold` | Gold glow box-shadow |
+| `.glow-cyan` | Cyan glow box-shadow |
+
+---
+
+## Gradient Utilities
+
+| Class | Effect |
+|---|---|
+| `.gradient-text` | Gold → Cyan diagonal gradient text |
+| `.gradient-text-gold` | Gold only gradient text |
+
+---
+
+## Layout
+
+| Token | Value |
+|---|---|
+| Max content width | `max-w-7xl` (1280px) |
+| Section padding | `pt-24 pb-24` (`section-padding`) |
+| Horizontal padding | `px-6` |
+| Card border radius | `rounded-2xl` |
+
+---
+
+## Animation Catalogue
+
+| Name | Trigger | Duration |
+|---|---|---|
+| Typing cursor | Auto — Hero section | Infinite |
+| Particle network | Auto — Canvas | Infinite |
+| Tech marquee | Auto | 20s loop |
+| Skill bar fill | On scroll into view | 1.2s ease-out |
+| Card slide-in | On scroll into view | 0.5s + stagger |
+| Custom cursor ring | Mouse movement | 0.15s lerp |
+| Navbar fade | Page load | 0.6s |
+| Float animation | Decorative elements | 6s infinite |
+
+---
+
+## Component Inventory
+
+### UI Primitives
+- `GlassCard` — glassmorphic card, optional `glow` prop
+- `Badge` — pill chip with 4 variants: `gold`, `cyan`, `outline`, `dark`
+- `CommandPalette` — Ctrl+K overlay with navigation & action shortcuts
+
+### Layout
+- `LenisProvider` — Lenis smooth scroll wrapper
+- `CustomCursor` — dot + ring cursor (desktop only)
+
+### Sections
+- `Navbar` — sticky glass, mobile menu, active section detection
+- `Hero` — typing animation, stats, social links, CTA
+- `Projects` — filter + search, metric cards, hardware tags
+- `TechStack` — skill bars + scrolling marquee
+- `Experience` — alternating timeline cards
+- `BlogSection` — categorized blog post cards
+- `Contact` — form + info sidebar + socials
+- `Footer` — logo, socials, back-to-top
+
+### Canvas
+- `ParticleBg` — 80-particle network with mouse repulsion
+
+---
+
+## Responsive Breakpoints
+
+| Breakpoint | Width |
+|---|---|
+| Mobile (base) | `< 640px` |
+| Tablet (`sm`) | `≥ 640px` |
+| Desktop (`md`) | `≥ 768px` |
+| Wide (`lg`) | `≥ 1024px` |
+| XL (`xl`) | `≥ 1280px` |

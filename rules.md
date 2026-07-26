@@ -1,14 +1,69 @@
-# Rules & Guidelines — Purvik Prajapati Portfolio
+# Rules & Conventions — Purvik Prajapati Portfolio
 
-## Technologies & Standards
-- **Frontend**: Vanilla HTML5, CSS3, and ES6+ JavaScript. No bulky frameworks (React, Vue, Angular).
-- **CSS Rules**: Custom CSS variables, Flexbox, Grid, glassmorphism. No TailwindCSS.
-- **Node.js Server**: Express.js for serving static files & `/api/inquiries` POST API.
-- **Database**: SQLite via `sqlite3` driver.
+## Code Style
 
-## Quality & Design Constraints
-- All interactive links must be functional (e.g. GitHub, LinkedIn, Instagram, Resume PDF download).
-- Fixed navigation bar must support smooth section scrolling without hiding headers behind the navbar (`scroll-margin-top: 80px`).
-- Responsive mobile menu toggle required for screens under 768px.
-- External links must use `target="_blank" rel="noopener noreferrer"`.
-- Clean semantic HTML structure with accessible ARIA attributes.
+- **TypeScript strict mode** — all components fully typed
+- **Path alias** — always use `@/` (e.g. `@/components/ui/GlassCard`)
+- **No inline styles** — use Tailwind utility classes or CSS variables
+- **Client components** — mark with `'use client'` only when using hooks, browser APIs, or Framer Motion
+- **Server components** — API routes (`app/api/`) are server-only, no browser APIs
+
+## Component Conventions
+
+- All section components live in `components/sections/`
+- All reusable UI primitives live in `components/ui/`
+- Canvas/WebGL elements live in `components/canvas/`
+- Layout wrappers live in `components/layout/`
+
+## Data Conventions
+
+- All portfolio content lives in `data/portfolioData.ts`
+- Add interfaces before data constants
+- Never hardcode personal info inside components — always import from `portfolioData.ts`
+
+## Design Conventions
+
+- Use `GlassCard` for all card-style containers
+- Use `Badge` for all category/status chips
+- Use `gradient-text` class for section headline accents
+- Section headings pattern: white text + `<span className="gradient-text">accent word</span>`
+- Section intro badge pattern: gold border pill with `ChevronRight` icon + uppercase tracking
+
+## Animation Conventions
+
+- All scroll-triggered animations use Framer Motion `useInView` with `{ once: true }`
+- Stagger delay: `index * 0.08` to `index * 0.1`
+- Entry animation: `opacity: 0, y: 28` → `opacity: 1, y: 0`
+- Duration: `0.5s` for cards, `0.6s` for headings
+
+## Sections (Live)
+
+| Section | File | Nav Link |
+|---|---|---|
+| Hero | `Hero.tsx` | — |
+| Projects | `Projects.tsx` | `#projects` |
+| Skills | `TechStack.tsx` | `#skills` |
+| Experience | `Experience.tsx` | `#experience` |
+| Blog | `BlogSection.tsx` | — |
+| Contact | `Contact.tsx` | `#contact` |
+
+> **Removed sections**: Research & Findings
+
+## Running & Deploying
+
+```bash
+# Development
+npm run dev
+
+# Type check
+npx tsc --noEmit
+
+# Production build
+npm run build
+npm start
+```
+
+## File Encoding
+
+- All files must be saved as **UTF-8 without BOM**
+- PowerShell `Set-Content` adds BOM — use Node.js `fs.writeFileSync` or the agent write tools instead
