@@ -8,5 +8,17 @@
   - LinkedIn: https://linkedin.com/in/purvik-prajapati
   - Instagram: https://instagram.com/purvik_06
 - **Resume File**: `Resume/Purvik-Resume-2.1.pdf`
-- **Design System**: Minimalist Luxury Charcoal & Gold theme (`#0c0c0e` background, `#f59e0b` gold accents)
-- **Active Files**: `index.html`, `portfolio.html`, `portfolio.css`, `portfolio.js`, `server.js`, `database.js`
+- **Design System**: Minimalist Luxury Charcoal & Gold theme (`#0a0a0c` background, `#f59e0b` gold accents, `#06b6d4` cyan accents)
+- **Framework**: Next.js 15 (App Router) + React 19 + TypeScript + Tailwind CSS v3
+- **Active Source Files**:
+  - `app/layout.tsx`, `app/page.tsx`, `app/globals.css`
+  - `app/api/contact/route.ts`, `app/api/github/route.ts`
+  - `components/sections/` — Hero, Navbar, Projects, TechStack, Experience, BlogSection, Contact, Footer
+  - `components/ui/` — GlassCard, Badge, CommandPalette
+  - `components/canvas/ParticleBg.tsx`
+  - `components/layout/` — LenisProvider, CustomCursor
+  - `data/portfolioData.ts` — all structured content
+  - `lib/utils.ts` — cn() utility
+- **Key Libraries**: framer-motion 11.x, @studio-freight/lenis 1.0.42, lucide-react, cmdk, three 0.170, gsap 3.12
+- **Dev Server**: `npm run dev` → http://localhost:3000
+- **Removed Sections**: Research & Findings (removed per user request)

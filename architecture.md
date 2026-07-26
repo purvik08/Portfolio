@@ -96,14 +96,17 @@ portfolioData.ts
 
 | Library | Version | Purpose |
 |---|---|---|
-| `next` | 15.0.3 | Framework |
-| `react` | 19.0.0-rc | UI runtime |
-| `framer-motion` | 11.x | Scroll + enter animations |
+| `next` | 15.5.22 | Framework |
+| `react` | 19.2.8 | UI runtime |
+| `framer-motion` | 11.18.x | Scroll + enter animations |
 | `@studio-freight/lenis` | 1.0.42 | Smooth scrolling |
 | `lucide-react` | 0.454 | Icons |
 | `tailwindcss` | 3.4 | Utility CSS |
-| `clsx` + `tailwind-merge` | latest | Class merging |
+| `clsx` + `tailwind-merge` | 2.x | Class merging |
 | `typescript` | 5.6 | Type safety |
+| `gsap` | 3.12.5 | Advanced animations |
+| `cmdk` | 1.1.1 | Command palette (Ctrl+K) |
+| `three` | 0.170.0 | 3D / Canvas utilities |
 
 ---
 
